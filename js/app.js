@@ -69,6 +69,11 @@ todoApp.controller("todoController", ($scope) => {
   };
 
   $scope.removeTodo = (id) => {
+    // Bug fixed
+    if (id === $scope.editId) {
+      $scope.state = "Add";
+      $scope.input = "";
+    }
     let newTodos = $scope.todos.filter((item) => item.id !== id);
     $scope.todos = newTodos;
     saveTodos($scope.todos);
